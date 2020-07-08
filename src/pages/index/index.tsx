@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { View, Button } from '@tarojs/components'
 import { observer, inject } from 'mobx-react'
 import baseService from '../../baseService'
-import { deepClone } from '../../static/js/until'
 
 import './index.scss'
 
@@ -26,19 +25,6 @@ class Index extends Component {
     this.state = {
 
     }
-  }
-  componentDidMount() {
-    const obj = {
-      name: '小嘿嘿',
-      age: 12,
-      address: {
-        city: 'beijing'
-      },
-      arr: ['a', 'b', 'c']
-    }
-    const obj2 = deepClone(obj)
-    obj2.age = 2
-    console.log(obj2)
   }
   request1() {
     baseService.get({ bNo: '102' }, { toastType: 'modal', loadingText: '加载中...' }).then((res: { data }) => {
