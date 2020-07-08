@@ -2,7 +2,7 @@ import service from './service'
 import { filtrationHttp, filtrationCode, changeMD5 } from './until'
 
 //创建请求实例
-export const newService = new service({ url: 'https://zgxcxpay.kantuzhuan.com:444/WebInterface.ashx' })
+export const newService = new service({ url: 'https://zgxcxpay.kantuzhuan.com/WebInterface.ashx' })
 //过滤http请求
 newService.use(filtrationHttp)
 
