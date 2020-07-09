@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import Base from './base'
-export default class Index extends Base {
+export default class Service extends Base {
     constructor(option: Taro.request.Option) {
         super()
         this.option = option

@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-export default class Index {
+export default class Base {
     protected useFunctions: baseService.useFunceion[] = []
     protected changeableFunctions: baseService.useFunceion[] = []
 
