@@ -27,12 +27,13 @@ class Index extends Component {
     }
   }
   request1() {
-    baseService.get('', { bNo: '102' }, { toastType: 'modal', loadingText: '加载中...' }).then((res: { data }) => {
+    const requestTask = baseService.get({ bNo: '102' }, { toastType: 'modal', loadingText: '加载中...' })
+    requestTask.then((res: { data }) => {
       console.log(res.data, 'res')
     })
   }
   request2() {
-    baseService.get('', { bNo: '103', phone: '13212312', MD5: 'phone' }, { toastType: 'modal' }).then((res: { data }) => {
+    baseService.get({ bNo: '103', phone: '13212312', MD5: 'phone' }, { toastType: 'modal' }).then((res: { data }) => {
       console.log(res.data, 'res')
     })
   }

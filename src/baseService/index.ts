@@ -1,6 +1,6 @@
 import service from './service'
 import { filtrationHttp, filtrationCode, changeMD5 } from './until'
-const baseUrl = 'https://coding.imooc.com/learn/addquestion'
+const baseUrl = 'https://zgxcxpay.kantuzhuan.com:444/HGInterface.ashx'
 
 //创建请求实例
 export const newService = new service({ url: baseUrl })
@@ -8,13 +8,13 @@ export const newService = new service({ url: baseUrl })
 newService.use(filtrationHttp)
 
 
-function get(path: string, data: any, fetchConfig?: baseService.fetchConfig) {
+function get(data: any, fetchConfig?: baseService.fetchConfig) {
     newService.useChangeable(filtrationCode(0))
-    return newService.request({ url: baseUrl + path, data: changeMD5(data), method: 'GET' }, fetchConfig)
+    return newService.request({ data: changeMD5(data), method: 'GET' }, fetchConfig)
 }
-function post(path: string, data: any, fetchConfig?: baseService.fetchConfig) {
+function post(data: any, fetchConfig?: baseService.fetchConfig) {
     newService.useChangeable(filtrationCode(0))
-    return newService.request({ url: baseUrl + path, data: changeMD5(data), method: 'POST' }, fetchConfig)
+    return newService.request({ data: changeMD5(data), method: 'POST' }, fetchConfig)
 }
 
 export default { get, post }

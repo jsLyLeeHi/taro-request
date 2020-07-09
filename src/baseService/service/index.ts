@@ -18,7 +18,7 @@ export default class Index extends Base {
             fetchConfig?.loadingText && Taro.showLoading({ title: fetchConfig?.loadingText || '', mask: true })
             myfetch.then((res) => {
                 fetchConfig?.loadingText && Taro.hideLoading()
-                //使用use传入的方法对不需要的数据拦截
+                //使用use传入的方法，对不需要的数据拦截
                 this.runUse(res).then((res) => {
                     this.changeableFunctions = []
                     resolve(res)
