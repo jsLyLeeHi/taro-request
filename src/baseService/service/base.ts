@@ -65,7 +65,7 @@ export default class Base {
     /**
      * 依次使用use函数传入的函数
     */
-    protected runUse<T>(res: T): Promise<T> {
+    protected runUse(res): Promise<any> {
         let i = 0
         let useFns = [...this.useFunctions, ...this.changeableFunctions]
         return new Promise((resolve, reject) => {
@@ -74,7 +74,7 @@ export default class Base {
                 if (arguments.length) {
                     resData = newResData
                 }
-                let nextFn: T = useFns[i];
+                let nextFn = useFns[i];
                 i++
                 if (!nextFn || typeof nextFn !== 'function') {
                     resolve(resData)
