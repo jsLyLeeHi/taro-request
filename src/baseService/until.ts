@@ -9,7 +9,7 @@ export function filtrationHttp(res: Taro.request.SuccessCallbackResult<any>, nex
     if (HTTP_STATUS.state) {
         next()
     } else {
-        error()
+        error(res)
     }
 }
 
@@ -22,6 +22,22 @@ export function filtrationCode(trueCode: number) {
             next()
         } else {
             error(res)
+        }
+    }
+}
+
+/**
+ * 验证返回的数据是否为需要的数据
+ */
+export function filtrationUploadCode() {
+    return function (res: Taro.request.SuccessCallbackResult<any>, next, error) {
+        if (typeof res.data === 'string') {
+            const resData = JSON.parse(res.data)
+            if (resData.fileUrl) {
+                next(resData.fileUrl)
+            } else {
+                error(resData)
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ declare namespace baseService {
         toastType?: 'toast' | 'none' | 'modal',
         confirm?: () => void
     }
-    interface reqOptions<U extends string | Taro.General.IAnyObject | ArrayBuffer = any | any>  {
+    interface reqOptions<U extends string | Taro.General.IAnyObject | ArrayBuffer = any | any> {
         /** 开发者服务器接口地址 */
         url?: string
         /** 接口调用结束的回调函数（调用成功、失败都会执行） */
@@ -48,5 +48,52 @@ declare namespace baseService {
          */
         onHeadersReceived?: (callback: (result: Taro.RequestTask.OnHeadersReceivedCallbackResult) => void) => void
     }
-    type useFunceion = (res: Taro.request.SuccessCallbackResult<any>, next: (res: Taro.request.SuccessCallbackResult<any>, fn?: any) => void, error: () => void) => void
+    type useFunceion = (res: any, next: (res: any) => void, error: (msg: string) => void) => void
+}
+
+declare namespace baseUpLoad {
+    interface initOption {
+        /** 开发者服务器地址 */
+        url: string
+        /** 要上传文件资源的路径 */
+        filePath?: string
+        /** 文件对应的 key，开发者在服务端可以通过这个 key 获取文件的二进制内容 */
+        name?: string
+        /** HTTP 请求 Header，Header 中不能设置 Referer */
+        header?: Taro.General.IAnyObject
+        /** HTTP 请求中其他额外的 form data */
+        formData?: Taro.General.IAnyObject
+        /** 超时时间，单位为毫秒 */
+        timeout?: number
+        /** 上传的文件名
+         * @supported h5
+         */
+        fileName?: string
+    }
+    interface Option {
+        /** 开发者服务器地址 */
+        url?: string
+        /** 要上传文件资源的路径 */
+        filePath: string
+        /** 文件对应的 key，开发者在服务端可以通过这个 key 获取文件的二进制内容 */
+        name: string
+        /** HTTP 请求 Header，Header 中不能设置 Referer */
+        header?: Taro.General.IAnyObject
+        /** HTTP 请求中其他额外的 form data */
+        formData?: Taro.General.IAnyObject
+        /** 超时时间，单位为毫秒 */
+        timeout?: number
+        /** 上传的文件名
+         * @supported h5
+         */
+        fileName?: string
+        /** 接口调用结束的回调函数（调用成功、失败都会执行） */
+        complete?: (res: Taro.General.CallbackResult) => void
+        /** 接口调用失败的回调函数 */
+        fail?: (res: Taro.General.CallbackResult) => void
+        /** 接口调用成功的回调函数 */
+        success?: (
+            result: Taro.uploadFile.SuccessCallbackResult,
+        ) => void
+    }
 }

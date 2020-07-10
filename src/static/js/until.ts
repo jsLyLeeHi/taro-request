@@ -3,12 +3,11 @@ import Taro from '@tarojs/taro'
 /** 
  * 深拷贝
 */
-
 export function deepClone<T>(obj: T): T {
   if (typeof obj !== 'object' || obj == null) {
     return obj
   }
-  let result
+  let result: any
   if (obj instanceof Array) {
     result = []
   } else {
@@ -22,8 +21,45 @@ export function deepClone<T>(obj: T): T {
   return result
 }
 
+/** 
+ * 判断是否全相等
+*/
+export function isEqual(obj1: any, obj2: any) {
+  function isObj(obj1) {
+    return typeof obj1 === 'object' && obj1 != null
+  }
+  if (!isObj(obj1) || !isObj(obj2)) {
+    return obj1 === obj2
+  }
+  const obj1Keys = Object.keys(obj1)
+  const obj2Keys = Object.keys(obj2)
+  if (obj1Keys.length !== obj2Keys.length) {
+    return false
+  }
+  for (let key in obj1) {
+    const res = isEqual(obj1[key], obj2[key])
+    if (!res) {
+      return false
+    }
+  }
+  return true
+}
+
+
+/**数组扁平化  */
+export function flatrn(arr) {
+  //非数组
+  if (!Array.isArray(arr)) return arr
+  //已经是平级数组
+  if (!arr.some(item => item instanceof Array)) return arr
+  const res = Array.prototype.concat.apply([], arr)
+  return flatrn(res)
+}
+
+
+
+/**生成一个随机字符串  */
 export function randomWord(len = 4) {
-  //生成一个随机字符串
   let str = "",
     range = len,
     d = new Date().getTime(),

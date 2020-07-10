@@ -9,7 +9,6 @@ type PageProps = {
 
 }
 type PageState = {
-
 }
 
 interface Index {
@@ -23,10 +22,13 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
     }
   }
+  componentDidMount() {
+
+  }
   request1() {
+    console.log('as')
     const requestTask = baseService.get({ bNo: '102' }, { toastType: 'modal', loadingText: '加载中...' })
     requestTask.then((res: { data }) => {
       console.log(res.data, 'res')
@@ -39,6 +41,7 @@ class Index extends Component {
   }
 
   render() {
+
     return (
       <View className='index'>
         <Button onClick={this.request1.bind(this)}>请求1</Button>

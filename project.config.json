@@ -2,7 +2,7 @@
   "miniprogramRoot": "./dist",
   "projectname": "react-mobx",
   "description": "测试项目react-mobx",
-  "appid": "touristappid",
+  "appid": "wxb518d87f300b513f",
   "setting": {
     "urlCheck": true,
     "es6": false,
