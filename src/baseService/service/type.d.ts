@@ -48,7 +48,7 @@ declare namespace baseService {
          */
         onHeadersReceived?: (callback: (result: Taro.RequestTask.OnHeadersReceivedCallbackResult) => void) => void
     }
-    type useFunceion = (res: any, next: (res: any) => void, error: (msg: string) => void) => void
+    interface useFunceion { (res: any, next: (res: any) => void, error: (msg: string) => void): void }
 }
 
 declare namespace baseUpLoad {

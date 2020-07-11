@@ -36,7 +36,7 @@ export default class Service extends Base {
                 }
                 const errMsg = err.errMsg || err.errorMessage
                 if (errMsg) {
-                    reject(this.errModal(err.errMsg))
+                    reject(this.errModal(errMsg))
                 } else {
                     reject(this.errModal('网络请求失败,请检查网络状态是否正常!!!'))
                 }
