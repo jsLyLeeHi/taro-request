@@ -1,4 +1,1 @@
-export interface TypeAnimate {
-    className: string,
-    duration: number
-}
+export type TypeAnimate = string

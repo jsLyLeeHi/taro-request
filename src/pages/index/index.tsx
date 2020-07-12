@@ -24,14 +24,13 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isModalShow: true
+      isModalShow: false
     }
   }
   componentDidMount() {
 
   }
   request1() {
-    console.log('as')
     const requestTask = baseService.get({ bNo: '102' }, { toastType: 'modal', loadingText: '加载中...' })
     requestTask.then((res: { data }) => {
       console.log(res.data, 'res')
@@ -54,7 +53,6 @@ class Index extends Component {
         <Button onClick={this.showModal.bind(this)}>showModal</Button>
         <Button onClick={this.request1.bind(this)}>请求1</Button>
         <Button onClick={this.request2.bind(this)}>请求2</Button>
-        <View>十分士大夫士大夫</View>
         <UIModal isShow={this.state.isModalShow} onHide={this.showModal.bind(this)}></UIModal>
       </View>
     )

@@ -2,11 +2,13 @@ import React from 'react'
 import { View } from '@tarojs/components'
 import { TypeAnimate } from './type'
 import { isEqual } from '../../../static/js/until'
+// import './myanimate.scss'
 import './animate.min.css'
 
 interface P {
     renderChilden?: any,
     animate: TypeAnimate[],
+    animateDuration: number
 }
 interface S {
     animateEnd: boolean,
@@ -14,10 +16,8 @@ interface S {
 }
 /**
  * @renderChilden 执行动画的元素
- * @animate 需要依次执行的动画，动画需要依次执行
- *      @className 动画的样式名
- *      @duration 动画时长
- * @duration 执行所有动画的时间
+ * @animate 需要依次执行的动画样式名称，动画需要依次执行
+ * @animateDuration 单个动画执行时长
  */
 class Index extends React.Component<P, S> {
     constructor(props) {
@@ -30,33 +30,34 @@ class Index extends React.Component<P, S> {
 
     static defaultProps = {
         animate: [],
+        animateDuration: 800
     }
     timer: any = null
     componentWillReceiveProps(nextProps: P) {
-        const { animate } = this.props
+        const { animate, animateDuration } = this.props
         if (!isEqual(nextProps.animate, animate)) {
-            let allDuration = 0
-            nextProps.animate.map(val => {
-                allDuration = allDuration + val.duration
-            })
+            let allDuration = animateDuration * nextProps.animate.length
+            this.onCheckAnimateEnd(allDuration)
             this.setAnimate(nextProps.animate)
-            clearTimeout(this.timer)
-            this.setState({
-                animateEnd: false
-            }, () => {
-                if (!allDuration) return
-                this.timer = setTimeout(() => {
-                    this.setState({
-                        animateEnd: true
-                    })
-                    clearTimeout(this.timer)
-                    this.timer = null
-                }, allDuration || 0);
-            })
         }
+    }
+    onCheckAnimateEnd(allDuration) {
+        clearTimeout(this.timer)
+        this.setState({
+            animateEnd: false
+        }, () => {
+            this.timer = setTimeout(() => {
+                this.setState({
+                    animateEnd: true
+                })
+                clearTimeout(this.timer)
+                this.timer = null
+            }, allDuration || 0);
+        })
     }
     animateTimer: any = null
     setAnimate(animate: TypeAnimate[]) {
+        const { animateDuration } = this.props
         const _this = this
         clearTimeout(this.animateTimer)
         let i = 0
@@ -64,7 +65,7 @@ class Index extends React.Component<P, S> {
             clearTimeout(_this.animateTimer)
             if (!animate[i]) return
             _this.setState({
-                animateClass: animate[i].className
+                animateClass: animate[i]
             })
             _this.animateTimer = setTimeout(() => {
                 clearTimeout(_this.animateTimer)
@@ -73,7 +74,7 @@ class Index extends React.Component<P, S> {
                 if (animate[i]) {
                     _Animate()
                 }
-            }, animate[i].duration);
+            }, animateDuration);
         }
         _Animate()
     }
