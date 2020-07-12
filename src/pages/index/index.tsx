@@ -24,7 +24,7 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isModalShow: false
+      isModalShow: true
     }
   }
   componentDidMount() {

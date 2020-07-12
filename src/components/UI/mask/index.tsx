@@ -20,7 +20,7 @@ export default function Index(props: P) {
         outAnimate = [{ className: 'fadeOut', duration: props.outDuration == null ? 200 : props.outDuration }]
     return <UIAnimate animate={props.isShow ? inAnimate : outAnimate}
         renderChilden={(animateEnd) => (
-            <View className={classnames({ mask: true, hide: !props.isShow && animateEnd })}>
+            <View className={classnames({ mask: true, hide: !props.isShow && animateEnd })} onClick={(e) => { e.stopPropagation() }}>
                 {props.renderModal(props.isShow)}
             </View>)} />
 }
