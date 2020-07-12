@@ -3,7 +3,7 @@ import Taro from '@tarojs/taro'
 /** 
  * 深拷贝
 */
-export function deepClone<T>(obj: T): T {
+export function deepClone<T extends Object>(obj: T): T {
   if (typeof obj !== 'object' || obj == null) {
     return obj
   }
@@ -14,7 +14,7 @@ export function deepClone<T>(obj: T): T {
     result = {}
   }
   for (let key in obj) {
-    if ((obj as any).hasOwnProperty(key)) {
+    if (obj.hasOwnProperty(key)) {
       result[key] = deepClone(obj[key])
     }
   }

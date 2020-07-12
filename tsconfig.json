@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "paths": {
+      "@components": [
+        "src/components"
+      ]
+    },
     "target": "es2017",
     "module": "commonjs",
     "removeComments": false,

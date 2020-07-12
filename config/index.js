@@ -1,3 +1,4 @@
+const path = require('path')
 const config = {
   projectName: 'react-mobx',
   date: '2020-7-7',
@@ -7,11 +8,15 @@ const config = {
     750: 1,
     828: 1.81 / 2
   },
+  alias: {
+    '@components': path.resolve(__dirname, '..', 'src/components')
+  },
   sourceRoot: 'src',
   outputRoot: `dist/${process.env.TARO_ENV}`,
   plugins: [],
   defineConstants: {
   },
+
   copy: {
     patterns: [
     ],

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Button } from '@tarojs/components'
 import { observer, inject } from 'mobx-react'
 import baseService from '../../baseService'
+import { UIModal } from '@components'
 
 import './index.scss'
 
@@ -9,6 +10,7 @@ type PageProps = {
 
 }
 type PageState = {
+  isModalShow: boolean
 }
 
 interface Index {
@@ -22,6 +24,7 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      isModalShow: false
     }
   }
   componentDidMount() {
@@ -39,13 +42,20 @@ class Index extends Component {
       console.log(res.data, 'res')
     })
   }
-
+  showModal() {
+    this.setState({
+      isModalShow: !this.state.isModalShow
+    })
+  }
   render() {
 
     return (
       <View className='index'>
+        <Button onClick={this.showModal.bind(this)}>showModal</Button>
         <Button onClick={this.request1.bind(this)}>请求1</Button>
         <Button onClick={this.request2.bind(this)}>请求2</Button>
+        <View>十分士大夫士大夫</View>
+        <UIModal isShow={this.state.isModalShow} onHide={this.showModal.bind(this)}></UIModal>
       </View>
     )
   }
