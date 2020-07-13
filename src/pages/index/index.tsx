@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Button } from '@tarojs/components'
 import { observer, inject } from 'mobx-react'
 import baseService from '../../baseService'
-import { UIModal } from '@components'
+import { UIModal, UIAnimate } from '@components'
 
 import './index.scss'
 
@@ -41,19 +41,18 @@ class Index extends Component {
       console.log(res.data, 'res')
     })
   }
-  showModal() {
-    this.setState({
-      isModalShow: !this.state.isModalShow
-    })
+  showModal(isModalShow) {
+    this.setState({ isModalShow })
   }
   render() {
-
     return (
       <View className='index'>
-        <Button onClick={this.showModal.bind(this)}>showModal</Button>
-        <Button onClick={this.request1.bind(this)}>请求1</Button>
-        <Button onClick={this.request2.bind(this)}>请求2</Button>
-        <UIModal isShow={this.state.isModalShow} onHide={this.showModal.bind(this)}></UIModal>
+        <UIAnimate animateFirstIn style={{ width: '100%' }} animate={['bounceInUp', 'wobble', 'rubberBand']} renderChilden={() => <View>
+          <Button onClick={this.showModal.bind(this, true)}>showModal</Button>
+          <Button onClick={this.request1.bind(this)}>请求1</Button>
+          <Button onClick={this.request2.bind(this)}>请求2</Button>
+        </View>} />
+        <UIModal isShow={this.state.isModalShow} onHide={this.showModal.bind(this, false)}></UIModal>
       </View>
     )
   }

@@ -8,16 +8,19 @@ import './animate.min.css'
 interface P {
     renderChilden?: any,
     animate: TypeAnimate[],
-    animateDuration: number
+    animateDuration: number,
+    style: React.CSSProperties,
+    animateFirstIn: boolean
 }
 interface S {
     animateEnd: boolean,
     animateClass: string
 }
 /**
- * @renderChilden 执行动画的元素
+ * @renderChilden 执行动画的元素 rednerProps函数 所有动画执行完毕将会收到参数animateEnd=true
  * @animate 需要依次执行的动画样式名称，动画需要依次执行
  * @animateDuration 单个动画执行时长
+ * @animateFirstIn 是否初次进入就执行动画
  */
 class Index extends React.Component<P, S> {
     constructor(props) {
@@ -30,16 +33,26 @@ class Index extends React.Component<P, S> {
 
     static defaultProps = {
         animate: [],
-        animateDuration: 800
+        animateDuration: 800,
+        animateFirstIn: false,
+        style: {}
     }
     timer: any = null
     componentWillReceiveProps(nextProps: P) {
-        const { animate, animateDuration } = this.props
+        const { animate } = this.props
         if (!isEqual(nextProps.animate, animate)) {
-            let allDuration = animateDuration * nextProps.animate.length
-            this.onCheckAnimateEnd(allDuration)
-            this.setAnimate(nextProps.animate)
+            this.animateInit(nextProps)
         }
+    }
+    componentDidMount() {
+        const { animateFirstIn } = this.props
+        animateFirstIn && this.animateInit(this.props)
+    }
+    animateInit(nextProps: P) {
+        const { animateDuration } = this.props
+        let allDuration = animateDuration * nextProps.animate.length
+        this.onCheckAnimateEnd(allDuration)
+        this.setAnimate(nextProps.animate)
     }
     onCheckAnimateEnd(allDuration) {
         clearTimeout(this.timer)
@@ -80,7 +93,8 @@ class Index extends React.Component<P, S> {
     }
     render() {
         const { animateEnd, animateClass } = this.state
-        return <View className={`animated ${animateClass}`}>{this.props.renderChilden(animateEnd)}</View>
+        const { style } = this.props
+        return <View style={style} className={`animated ${animateClass}`}>{this.props.renderChilden(animateEnd)}</View>
     }
 }
 

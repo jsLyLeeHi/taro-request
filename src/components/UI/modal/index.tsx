@@ -10,8 +10,8 @@ interface P {
 
 export default function Index(props: P) {
     // let inAnimate = ['bounceInUp', 'wobble', 'rubberBand'],
-    let inAnimate = ['slideInLeft'],
-        outAnimate = ['slideOutRight']
+    let inAnimate = ['bounceInUp'],
+        outAnimate = ['bounceOutDown']
     return <UIMask isShow={props.isShow} renderModal={() => (
         <View className='modal-box' onClick={props.onHide}>
             <UIAnimate animate={props.isShow ? inAnimate : outAnimate} renderChilden={() => (
