@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import Taro from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
 import { observer, inject } from 'mobx-react'
 import baseService from '../../baseService'
-import { UIModal } from '@components'
+import { UIModal, UIAnimate } from '@components'
 import './index.scss'
 
 type PageProps = {
@@ -30,7 +29,6 @@ class Index extends Component {
   componentDidMount() {
 
   }
-
   request1() {
     const requestTask = baseService.get({ bNo: '102' }, { toastType: 'modal', loadingText: '加载中...' })
     requestTask.then((res: { data }) => {
@@ -42,23 +40,17 @@ class Index extends Component {
       console.log(res.data, 'res')
     })
   }
-  showModal(isModalShow: boolean) {
+  showModal(isModalShow) {
     this.setState({ isModalShow })
   }
-  navPage2() {
-    Taro.navigateTo({
-      url: '/pages/page2/index'
-    })
-  }
   render() {
-    const Views = <View>
-      <Button className='btn-primary' onClick={this.showModal.bind(this, true)}>showModal</Button>
+    const Views = <UIAnimate animateFirstIn animate={['bounceInUp', 'wobble', 'rubberBand']} renderChilden={() => <View>
+      <Button onClick={this.showModal.bind(this, true)}>showModal</Button>
       <Button onClick={this.request1.bind(this)}>请求1</Button>
       <Button onClick={this.request2.bind(this)}>请求2</Button>
-      <Button onClick={this.navPage2.bind(this)}>跳转到page2</Button>
-    </View>
+    </View>} />
     return (
-      <View>
+      <View className='index'>
         {Views}
         <UIModal isShow={this.state.isModalShow} onHide={this.showModal.bind(this, false)}></UIModal>
       </View>

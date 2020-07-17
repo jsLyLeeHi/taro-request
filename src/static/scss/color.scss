@@ -1,13 +1,13 @@
-$cwhite: #fff; 
-$cbgimg: #ddd; // 无图片的背景色
+$cwhite: #fff !default; 
+$cbgimg: #ddd !default; // 无图片的背景色
 $cmain: #ff5629; // 主色
-$csub: #ff8706; // 辅色1
-$cdot: #11b036; // 辅色2
-$cdot2: #3399ff; // 辅色3
-$cdef: #222; // 一般标题文本颜色 表单输入文字
-$cgraydrak: #666; // 表单栏文字颜色
-$cgray: #999; // 一般说明文字、时间颜色
-$cplace: #ccc; // 表单栏未输入时文字颜色
-$cborder: #e5e5e5; // 分割线颜色
-$cbg: #f5f5f5; // 背景色
-$red: #F44343
+$csub: #ff8706 !default; // 辅色1
+$cdot: #11b036 !default; // 辅色2
+$cdot2: #3399ff !default; // 辅色3
+$cdef: #222 !default; // 一般标题文本颜色 表单输入文字
+$cgraydrak: #666 !default; // 表单栏文字颜色
+$cgray: #999 !default; // 一般说明文字、时间颜色
+$cplace: #ccc !default; // 表单栏未输入时文字颜色
+$cborder: #e5e5e5 !default; // 分割线颜色
+$cbg: #f5f5f5 !default; // 背景色
+$red: #F44343 !default

@@ -1,5 +1,11 @@
 @import './color.scss';
 
+%font-max {
+    font-size: 42px;
+    color: $cdef;
+}
+
+
 $size: 20px; 
 $h: 88px;
 

@@ -1,5 +1,21 @@
 import Taro from '@tarojs/taro'
 
+// function Elem(el) {
+//   this.elem = document.querySelectorAll(el)[0]
+// }
+// Elem.prototype.html = function (val) {
+//   this.elem.innerHTML = val
+//   return this
+// }
+// Elem.prototype.on = function (type, fn) {
+//   this.elem.addEventListener(type, fn)
+//   return this
+// }
+// let div = new Elem('.App')
+// div.html('<p>我就是替换你</p>').on('click', function () {
+//   alert('checked')
+// })
+
 /** 
  * 深拷贝
 */
@@ -144,6 +160,32 @@ export function getComponentHeight(className: string = '') {
   })
 }
 
+//函数防抖    不立即执行函数，在规定时间之后执行函数 interval(规定时间)
+export function debounce(fn, delay) {
+  let timer: NodeJS.Timeout | null = null;
+  return function () {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      fn.apply(this, arguments);
+      timer = null
+    }, delay)
+  }
+}
+
+
+//函数节流     在某个时间间隔之后执行一次函数，类似阀门一样定期开放执行一次函数
+export function throttle(fn, interval = 100) {
+  var timer: NodeJS.Timeout | null = null;     //触发时间
+  return function () {
+    if (timer) return
+    timer = setTimeout(() => {
+      fn.apply(this, arguments);
+      timer = null
+    }, interval);
+  }
+}
 
 
 
