@@ -22,9 +22,9 @@ export default class Service extends Base {
             myfetch.then((res) => {
                 fetchConfig?.loadingText && Taro.hideLoading()
                 //使用use传入的方法，对不需要的数据拦截
-                this.runUse(res).then((res) => {
+                this.runUse(res).then((useRes) => {
                     this.changeableFunctions = []
-                    resolve(res)
+                    resolve(useRes)
                 }, (err) => {
                     reject(err)
                 })

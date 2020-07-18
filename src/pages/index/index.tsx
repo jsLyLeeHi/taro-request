@@ -28,19 +28,18 @@ class Index extends Component {
     }
   }
   componentDidMount() {
-
+    
   }
 
-  request1() {
-    const requestTask = baseService.get({ bNo: '102' }, { toastType: 'modal', loadingText: '加载中...' })
-    requestTask.then((res: { data }) => {
-      console.log(res.data, 'res')
-    })
+  async request1() {
+    const request = baseService.get({ bNo: '102' }, { toastType: 'modal', loadingText: '加载中...' })
+    let data = await request
+    console.log(data)
   }
-  request2() {
-    baseService.get({ bNo: '103', phone: '13212312', MD5: 'phone' }, { toastType: 'modal' }).then((res: { data }) => {
-      console.log(res.data, 'res')
-    })
+  async request2() {
+    const request = baseService.get({ bNo: '103', phone: '13212312', MD5: 'phone' }, { toastType: 'modal' })
+    let data = await request
+    console.log(data)
   }
   showModal(isModalShow: boolean) {
     this.setState({ isModalShow })
