@@ -3,6 +3,9 @@
     "paths": {
       "@components": [
         "src/components"
+      ],
+      "@static/*": [
+        "src/static/*"
       ]
     },
     "target": "es2017",

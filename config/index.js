@@ -9,7 +9,8 @@ const config = {
     828: 1.81 / 2
   },
   alias: {
-    '@components': path.resolve(__dirname, '..', 'src/components')
+    '@components': path.resolve(__dirname, '..', 'src/components'),
+    '@static': path.resolve(__dirname, '..', 'src/static')
   },
   sourceRoot: 'src',
   outputRoot: `dist/${process.env.TARO_ENV}`,

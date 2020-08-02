@@ -4,6 +4,7 @@ import { View, Button } from '@tarojs/components'
 import { observer, inject } from 'mobx-react'
 import baseService from '../../baseService'
 import { UIModal } from '@components'
+import { getUnit } from '@static/js/until'
 import './index.scss'
 
 type PageProps = {
@@ -11,6 +12,7 @@ type PageProps = {
 }
 type PageState = {
   isModalShow: boolean
+  Views?: JSX.Element
 }
 
 interface Index {
@@ -24,11 +26,21 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isModalShow: false
+      isModalShow: false,
+      Views: undefined
     }
   }
   componentDidMount() {
-    
+    console.log(getUnit)
+    const Views = <View>
+      <Button className='btn-primary' onClick={this.showModal.bind(this, true)}>showModal</Button>
+      <Button onClick={this.request1.bind(this)}>请求1</Button>
+      <Button onClick={this.request2.bind(this)}>请求2</Button>
+      <Button onClick={this.navPage2.bind(this)}>跳转到page2</Button>
+    </View>
+    setTimeout(() => {
+      this.setState({ Views })
+    }, 2000);
   }
 
   async request1() {
@@ -50,12 +62,8 @@ class Index extends Component {
     })
   }
   render() {
-    const Views = <View>
-      <Button className='btn-primary' onClick={this.showModal.bind(this, true)}>showModal</Button>
-      <Button onClick={this.request1.bind(this)}>请求1</Button>
-      <Button onClick={this.request2.bind(this)}>请求2</Button>
-      <Button onClick={this.navPage2.bind(this)}>跳转到page2</Button>
-    </View>
+    const { Views } = this.state
+    console.log(Views)
     return (
       <View>
         {Views}

@@ -44,6 +44,7 @@ $h: 88px;
 .bg-main{background-color: $cmain;}
 .bg-sub{background-color: $csub;}
 .bg-dot {background-color: $cdot; }
+$maskBgColor: rgba(0, 0, 0, 0.6) !default;
 /*  */
 .al{text-align: left}
 .ac{text-align: center}

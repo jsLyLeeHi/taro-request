@@ -1,20 +1,5 @@
 import Taro from '@tarojs/taro'
 
-// function Elem(el) {
-//   this.elem = document.querySelectorAll(el)[0]
-// }
-// Elem.prototype.html = function (val) {
-//   this.elem.innerHTML = val
-//   return this
-// }
-// Elem.prototype.on = function (type, fn) {
-//   this.elem.addEventListener(type, fn)
-//   return this
-// }
-// let div = new Elem('.App')
-// div.html('<p>我就是替换你</p>').on('click', function () {
-//   alert('checked')
-// })
 
 /** 
  * 深拷贝
