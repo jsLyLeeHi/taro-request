@@ -31,7 +31,7 @@ class Index extends Component {
     }
   }
   componentDidMount() {
-    console.log(getUnit)
+    console.log(getUnit('20px'))
     const Views = <View>
       <Button className='btn-primary' onClick={this.showModal.bind(this, true)}>showModal</Button>
       <Button onClick={this.request1.bind(this)}>请求1</Button>
